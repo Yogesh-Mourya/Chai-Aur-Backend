@@ -11,6 +11,18 @@ dotenv.config({
 
 
 connectDB()
+.then(() => {
+    const PortNumber = process.env.PORT || 8000;
+    app.on("error", (error) => {
+        console.log("Error in starting server", error)
+    }),
+    app.listen(PortNumber , () => {
+        console.log(`App is listening on PORT ${PortNumber}`)
+    })
+})
+.catch((error) => {
+    console.error("Error in connecting to DB", error)
+})
 
 
 
